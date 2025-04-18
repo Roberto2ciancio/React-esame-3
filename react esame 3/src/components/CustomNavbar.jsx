@@ -12,7 +12,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import applelogo from "../assets/img/assets/assets/logos/apple.svg";
 import "../App.css";
 
-const CustomNavbar = function () {
+const CustomNavbar = ({ setSearchQuery }) => {
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value); // Aggiorna la query di ricerca
+  };
+
   return (
     <Navbar expand="lg" className="mb-3 bg-secondary">
       <Container fluid>
@@ -46,6 +50,7 @@ const CustomNavbar = function () {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                onChange={handleSearch}
               />
               <Button variant="outline-danger">Search</Button>
             </Form>

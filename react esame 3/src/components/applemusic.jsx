@@ -10,18 +10,19 @@ import episodio2 from "../assets/img/assets/assets/images/2b.png";
 import episodio3 from "../assets/img/assets/assets/images/2c.png";
 import episodio4 from "../assets/img/assets/assets/images/2d.png";
 
-const AppleMusic = () => {
+const AppleMusic = ({ searchQuery }) => {
   const [songs, setSongs] = useState([]);
 
+  // Funzione per recuperare i dati dall'API
   useEffect(() => {
     const fetchSongs = async () => {
       try {
         const response = await fetch(
-          "https://striveschool-api.herokuapp.com/api/deezer/search?q=sferaebbasta"
+          `https://striveschool-api.herokuapp.com/api/deezer/search?q=${searchQuery}`
         );
         if (response.ok) {
           const data = await response.json();
-          setSongs(data.data);
+          setSongs(data.data); // Salva i dati delle canzoni nello stato
         } else {
           console.error("Errore nel recupero dei dati");
         }
@@ -30,8 +31,10 @@ const AppleMusic = () => {
       }
     };
 
-    fetchSongs();
-  }, []);
+    if (searchQuery) {
+      fetchSongs();
+    }
+  }, [searchQuery]);
 
   return (
     <main className="main-content container mt-4">
@@ -43,6 +46,11 @@ const AppleMusic = () => {
               Nuova stazione radio: Chill
               <p>Rilasati, al resto pensiamo noi. ascolta apple music chill</p>
             </div>
+            <img
+              src={chill}
+              alt="Chill"
+              className="img-fluid rounded p-3 mb-3"
+            />
           </div>
 
           <div className="col-md-6">
@@ -50,21 +58,10 @@ const AppleMusic = () => {
               Nuova stazione radio: Música Uno
               <p>Ecco la nuova cada della musica latina</p>
             </div>
-          </div>
-        </div>
-        <div className="d-flex pe-2">
-          <div className="col-md-6 col-xs-12 ">
-            <img
-              src={chill}
-              alt="chill"
-              className="img-fluid  p-3 mb-3 rounded"
-            />
-          </div>
-          <div className="col-md-6 col-xs-12  ">
             <img
               src={musicaUnoImage}
-              alt="musica uno"
-              className="img-fluid  p-3 mb-3 rounded"
+              alt="Música Uno"
+              className="img-fluid rounded p-3 mb-3"
             />
           </div>
         </div>

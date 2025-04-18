@@ -5,7 +5,7 @@ import "../App.css";
 const CustomFooter = function () {
   return (
     <footer className="footer bg-dark text-white text-center py-3">
-      <p>Copyright © 2024 Apple Inc. Tutti i diritti riservati.</p>
+      <p>Copyright © 2025 Apple Inc. Tutti i diritti riservati.</p>
     </footer>
   );
 };
